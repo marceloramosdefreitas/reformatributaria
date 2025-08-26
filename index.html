@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBC e CBS: A Nova Reforma Tributária</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Minimalist Professional -->
+    <!-- Application Structure Plan: A single-page, vertically-stacked layout was chosen to present a clear narrative progression of the tax reform concepts. It starts with a high-level overview, then offers a direct comparison between IBC and CBS, followed by a detailed look at the core principles and practical impacts. This structure facilitates a guided exploration path, allowing users to build their understanding piece by piece. Key interactions are driven by clear headings and a well-defined layout, which guides the user through the content without needing complex JS interactions. -->
+    <!-- Visualization & Content Choices:
+        - Report Info: Main concept -> Goal: Inform -> Viz: Header & Introductory Text -> Interaction: Simple scroll -> Justification: Provides a clear, immediate understanding -> Library: HTML.
+        - Report Info: Differences between IBC and CBS -> Goal: Compare -> Viz: Dual-column layout (cards) -> Interaction: Visual separation -> Justification: Side-by-side presentation is the most effective way to compare two similar concepts directly -> Library: HTML/CSS (Tailwind flexbox).
+        - Report Info: Pillars of tax reform -> Goal: Organize concepts -> Viz: Grid of cards -> Interaction: Simple hover effect -> Justification: Organizes key ideas into a digestible, scannable format -> Library: HTML/CSS (Tailwind grid).
+        - Report Info: Implementation timeline -> Goal: Show change over time -> Viz: Sequential text with visual markers -> Interaction: None, static info -> Justification: A simple text-based timeline is sufficient to convey key dates without a complex chart -> Library: HTML.
+        - Gemini Integration: Q&A Chatbot -> Goal: Answer specific questions -> Viz: Chat interface -> Interaction: Text input, button click -> Justification: Provides a dynamic and personalized way to explore the content, enhancing user engagement and understanding.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc;
+            color: #334155;
+        }
+        .card {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .icon-symbol {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        .chat-container {
+            height: 400px;
+            overflow-y: auto;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .user-message {
+            background-color: #d1fae5;
+            align-self: flex-end;
+        }
+        .ai-message {
+            background-color: #ffffff;
+            align-self: flex-start;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-200">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-xl font-bold text-gray-800">Reforma Tributária</h1>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <section id="introduction" class="text-center mb-16 md:mb-24">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">IBC e CBS: Os Novos Impostos</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                Esta página é um guia visual e simplificado sobre as principais mudanças propostas pela reforma tributária no Brasil. Aqui, você entenderá o que são o Imposto sobre Bens e Serviços (IBC) e a Contribuição sobre Bens e Serviços (CBS), como eles funcionam e quais são seus impactos na economia e no dia a dia.
+            </p>
+        </section>
+
+        <section id="definition" class="mb-16 md:mb-24">
+            <div class="bg-white p-6 md:p-8 rounded-lg card border border-gray-200">
+                <h3 class="text-2xl font-bold text-center mb-6">O Que São o IBC e a CBS?</h3>
+                <p class="text-gray-700 leading-relaxed max-w-4xl mx-auto text-justify">
+                    O IBC e a CBS formam o que é chamado de Imposto sobre Valor Adicionado (IVA) Dual no Brasil. Eles foram criados para unificar cinco impostos federais, estaduais e municipais sobre consumo em um sistema mais simples e transparente. A ideia central é substituir a complexidade atual por um modelo único, não-cumulativo, que incida apenas sobre o valor adicionado em cada etapa da cadeia produtiva.
+                </p>
+            </div>
+        </section>
+
+        <section id="comparison" class="mb-16 md:mb-24">
+            <h3 class="text-2xl font-bold text-center mb-8">Comparação Direta</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 md:p-8 rounded-lg card border border-gray-200">
+                    <h4 class="text-xl font-bold text-center mb-4 text-[#16a34a]">Imposto sobre Bens e Serviços (IBC)</h4>
+                    <p class="text-gray-600 mb-4">O IBC é a componente de competência dos estados e municípios. Ele unifica o ICMS (Imposto sobre Circulação de Mercadorias e Serviços) e o ISS (Imposto sobre Serviços). Suas características principais são:</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                        <li>**Competência Compartilhada:** Cobrado por estados e municípios.</li>
+                        <li>**Unificação de Impostos:** Substitui ICMS e ISS.</li>
+                        <li>**Gestão Coletiva:** Administrado por um Conselho Federativo.</li>
+                        <li>**Princípio do Destino:** A arrecadação fica no local onde o bem ou serviço é consumido.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 md:p-8 rounded-lg card border border-gray-200">
+                    <h4 class="text-xl font-bold text-center mb-4 text-[#b91c1c]">Contribuição sobre Bens e Serviços (CBS)</h4>
+                    <p class="text-gray-600 mb-4">A CBS é a componente de competência federal. Ela unifica PIS (Programa de Integração Social), COFINS (Contribuição para o Financiamento da Seguridade Social) e o IPI (Imposto sobre Produtos Industrializados). Seus pontos-chave são:</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                        <li>**Competência Federal:** Cobrado pela União.</li>
+                        <li>**Unificação de Contribuições:** Substitui PIS, COFINS e IPI.</li>
+                        <li>**Gestão Centralizada:** Administrado pela Receita Federal.</li>
+                        <li>**Redução de Burocracia:** Elimina a complexa legislação de tributos federais.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="pillars" class="mb-16 md:mb-24">
+            <h3 class="text-2xl font-bold text-center mb-8">Os 5 Pilares da Reforma Tributária</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <div class="bg-white p-6 rounded-lg card border border-gray-200 flex flex-col items-center text-center">
+                    <div class="bg-gray-100 rounded-full w-12 h-12 flex items-center justify-center mb-4"><span class="icon-symbol">🗂️</span></div>
+                    <h4 class="font-bold text-lg mb-2">Simplificação</h4>
+                    <p class="text-sm text-gray-600">Unifica impostos, reduzindo a burocracia e os custos para as empresas.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg card border border-gray-200 flex flex-col items-center text-center">
+                    <div class="bg-gray-100 rounded-full w-12 h-12 flex items-center justify-center mb-4"><span class="icon-symbol">🔄</span></div>
+                    <h4 class="font-bold text-lg mb-2">Não-cumulatividade</h4>
+                    <p class="text-sm text-gray-600">Apenas o valor adicionado é taxado, eliminando o "efeito cascata" de impostos sobre impostos.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg card border border-gray-200 flex flex-col items-center text-center">
+                    <div class="bg-gray-100 rounded-full w-12 h-12 flex items-center justify-center mb-4"><span class="icon-symbol">🎯</span></div>
+                    <h4 class="font-bold text-lg mb-2">Princípio do Destino</h4>
+                    <p class="text-sm text-gray-600">O imposto é cobrado no local onde o produto é consumido, e não na sua origem.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg card border border-gray-200 flex flex-col items-center text-center">
+                    <div class="bg-gray-100 rounded-full w-12 h-12 flex items-center justify-center mb-4"><span class="icon-symbol">💎</span></div>
+                    <h4 class="font-bold text-lg mb-2">Transparência</h4>
+                    <p class="text-sm text-gray-600">O imposto virá destacado na nota fiscal, permitindo que o consumidor saiba o valor exato pago em tributos.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg card border border-gray-200 flex flex-col items-center text-center">
+                    <div class="bg-gray-100 rounded-full w-12 h-12 flex items-center justify-center mb-4"><span class="icon-symbol">🌿</span></div>
+                    <h4 class="font-bold text-lg mb-2">Sustentabilidade</h4>
+                    <p class="text-sm text-gray-600">O modelo do IVA é mais estável e resiliente a crises econômicas, garantindo uma arrecadação mais previsível.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline" class="mb-16 md:mb-24">
+            <h3 class="text-2xl font-bold text-center mb-8">Cronograma de Implementação</h3>
+            <div class="bg-white p-6 md:p-8 rounded-lg card border border-gray-200 max-w-4xl mx-auto">
+                <ol class="relative border-s border-gray-300 ml-4">
+                    <li class="mb-10 ms-6">
+                        <span class="absolute flex items-center justify-center w-6 h-6 bg-gray-100 rounded-full -start-3 ring-8 ring-white">
+                            <span class="icon-symbol">🗓️</span>
+                        </span>
+                        <h4 class="flex items-center mb-1 text-lg font-semibold text-gray-900">2026</h4>
+                        <p class="text-base font-normal text-gray-600">Início da fase de testes com uma alíquota de referência de 1%.</p>
+                    </li>
+                    <li class="mb-10 ms-6">
+                        <span class="absolute flex items-center justify-center w-6 h-6 bg-gray-100 rounded-full -start-3 ring-8 ring-white">
+                            <span class="icon-symbol">⚙️</span>
+                        </span>
+                        <h4 class="flex items-center mb-1 text-lg font-semibold text-gray-900">2027 a 2032</h4>
+                        <p class="text-base font-normal text-gray-600">Período de transição para a substituição completa dos impostos antigos pelos novos IVA Dual (IBC e CBS).</p>
+                    </li>
+                    <li class="ms-6">
+                        <span class="absolute flex items-center justify-center w-6 h-6 bg-gray-100 rounded-full -start-3 ring-8 ring-white">
+                            <span class="icon-symbol">✅</span>
+                        </span>
+                        <h4 class="flex items-center mb-1 text-lg font-semibold text-gray-900">2033</h4>
+                        <p class="text-base font-normal text-gray-600">Final da transição. O sistema de tributação sobre consumo passa a ser totalmente baseado no IVA Dual.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="chatbot" class="mb-16 md:mb-24 max-w-2xl mx-auto">
+            <h3 class="text-2xl font-bold text-center mb-8">Consulte o Especialista ✨</h3>
+            <div class="bg-gray-50 p-6 rounded-lg card border border-gray-200 flex flex-col">
+                <div id="chat-history" class="chat-container space-y-4 p-4 mb-4 rounded-lg bg-white shadow-inner">
+                    <div class="p-3 rounded-lg text-sm text-gray-700 max-w-[85%] ai-message">Olá! Pergunte-me qualquer coisa sobre o IBC e a CBS.</div>
+                </div>
+                <div class="flex">
+                    <input type="text" id="chat-input" placeholder="Digite sua pergunta..." class="flex-grow p-3 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <button id="chat-send-btn" class="px-6 py-3 bg-green-600 text-white rounded-r-lg hover:bg-green-700 transition-colors duration-200 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed">
+                        <span id="button-text">Enviar</span>
+                        <span id="loading-spinner" class="hidden w-5 h-5 border-2 border-white border-t-2 border-t-transparent rounded-full animate-spin"></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center">
+            <p>&copy; 2025 Guia Tributário. Todos os direitos reservados.</p>
+            <p class="text-sm text-gray-400 mt-1">Um resumo interativo da Reforma Tributária brasileira.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatInput = document.getElementById('chat-input');
+            const chatSendBtn = document.getElementById('chat-send-btn');
+            const chatHistory = document.getElementById('chat-history');
+            const buttonText = document.getElementById('button-text');
+            const loadingSpinner = document.getElementById('loading-spinner');
+
+            const sendMessage = async () => {
+                const userMessage = chatInput.value.trim();
+                if (userMessage === '') return;
+
+                // Display user message
+                const userDiv = document.createElement('div');
+                userDiv.className = 'p-3 rounded-lg text-sm text-gray-700 max-w-[85%] user-message self-end';
+                userDiv.textContent = userMessage;
+                chatHistory.appendChild(userDiv);
+                chatHistory.scrollTop = chatHistory.scrollHeight;
+
+                chatInput.value = '';
+                chatSendBtn.disabled = true;
+                buttonText.classList.add('hidden');
+                loadingSpinner.classList.remove('hidden');
+
+                // Prepare API call
+                const systemPrompt = "Você é um especialista em direito tributário brasileiro. Responda às perguntas sobre o IBC e a CBS com base nas informações mais recentes e de forma clara e objetiva. Mantenha as respostas focadas nos impostos citados.";
+                const userQuery = userMessage;
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+                const payload = {
+                    contents: [{ parts: [{ text: userQuery }] }],
+                    tools: [{ "google_search": {} }],
+                    systemInstruction: {
+                        parts: [{ text: systemPrompt }]
+                    },
+                };
+
+                let retries = 0;
+                const maxRetries = 3;
+                const baseDelay = 1000;
+
+                const fetchWithRetry = async () => {
+                    try {
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+
+                        if (response.status === 429 && retries < maxRetries) {
+                            const delay = baseDelay * Math.pow(2, retries) + Math.random() * 1000;
+                            retries++;
+                            return new Promise(resolve => setTimeout(() => resolve(fetchWithRetry()), delay));
+                        }
+
+                        if (!response.ok) {
+                            throw new Error(`API call failed with status: ${response.status}`);
+                        }
+
+                        return await response.json();
+                    } catch (error) {
+                        if (retries < maxRetries) {
+                            const delay = baseDelay * Math.pow(2, retries) + Math.random() * 1000;
+                            retries++;
+                            return new Promise(resolve => setTimeout(() => resolve(fetchWithRetry()), delay));
+                        } else {
+                            throw error;
+                        }
+                    }
+                };
+                
+                try {
+                    const result = await fetchWithRetry();
+                    const candidate = result?.candidates?.[0];
+                    let aiResponseText = 'Não foi possível obter uma resposta. Tente novamente.';
+
+                    if (candidate && candidate.content?.parts?.[0]?.text) {
+                        aiResponseText = candidate.content.parts[0].text;
+                    }
+
+                    // Display AI message
+                    const aiDiv = document.createElement('div');
+                    aiDiv.className = 'p-3 rounded-lg text-sm text-gray-700 max-w-[85%] ai-message self-start shadow';
+                    aiDiv.textContent = aiResponseText;
+                    chatHistory.appendChild(aiDiv);
+
+                } catch (error) {
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'p-3 rounded-lg text-sm text-red-700 max-w-[85%] ai-message self-start shadow';
+                    errorDiv.textContent = 'Erro ao se conectar com o servidor. Por favor, tente novamente.';
+                    chatHistory.appendChild(errorDiv);
+                } finally {
+                    chatHistory.scrollTop = chatHistory.scrollHeight;
+                    chatSendBtn.disabled = false;
+                    buttonText.classList.remove('hidden');
+                    loadingSpinner.classList.add('hidden');
+                }
+            };
+
+            chatSendBtn.addEventListener('click', sendMessage);
+            chatInput.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
