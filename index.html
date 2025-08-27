@@ -9,15 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Minimalist Professional -->
-    <!-- Application Structure Plan: A single-page, vertically-stacked layout was chosen to present a clear narrative progression of the tax reform concepts. It starts with a high-level overview, then offers a direct comparison between IBC and CBS, followed by a detailed look at the core principles and practical impacts. This structure facilitates a guided exploration path, allowing users to build their understanding piece by piece. Key interactions are driven by clear headings and a well-defined layout, which guides the user through the content without needing complex JS interactions. -->
-    <!-- Visualization & Content Choices:
-        - Report Info: Main concept -> Goal: Inform -> Viz: Header & Introductory Text -> Interaction: Simple scroll -> Justification: Provides a clear, immediate understanding -> Library: HTML.
-        - Report Info: Differences between IBC and CBS -> Goal: Compare -> Viz: Dual-column layout (cards) -> Interaction: Visual separation -> Justification: Side-by-side presentation is the most effective way to compare two similar concepts directly -> Library: HTML/CSS (Tailwind flexbox).
-        - Report Info: Pillars of tax reform -> Goal: Organize concepts -> Viz: Grid of cards -> Interaction: Simple hover effect -> Justification: Organizes key ideas into a digestible, scannable format -> Library: HTML/CSS (Tailwind grid).
-        - Report Info: Implementation timeline -> Goal: Show change over time -> Viz: Sequential text with visual markers -> Interaction: None, static info -> Justification: A simple text-based timeline is sufficient to convey key dates without a complex chart -> Library: HTML.
-        - Gemini Integration: Q&A Chatbot -> Goal: Answer specific questions -> Viz: Chat interface -> Interaction: Text input, button click -> Justification: Provides a dynamic and personalized way to explore the content, enhancing user engagement and understanding.
-    -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -198,7 +189,6 @@
                 const userMessage = chatInput.value.trim();
                 if (userMessage === '') return;
 
-                // Display user message
                 const userDiv = document.createElement('div');
                 userDiv.className = 'p-3 rounded-lg text-sm text-gray-700 max-w-[85%] user-message self-end';
                 userDiv.textContent = userMessage;
@@ -210,73 +200,35 @@
                 buttonText.classList.add('hidden');
                 loadingSpinner.classList.remove('hidden');
 
-                // Prepare API call
-                const systemPrompt = "Você é um especialista em direito tributário brasileiro. Responda às perguntas sobre o IBC e a CBS com base nas informações mais recentes e de forma clara e objetiva. Mantenha as respostas focadas nos impostos citados.";
-                const userQuery = userMessage;
-                const apiKey = "";
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+                // Endpoint do seu proxy de servidor.
+                // IMPORTANTE: VOCÊ DEVE SUBSTITUIR ESTA URL pela URL da sua função de servidor após a hospedagem.
+                const proxyUrl = 'https://vercel.com/marcelo-ramos-de-freitas-projects/reformatributaria/api/ask-gemini';
 
-                const payload = {
-                    contents: [{ parts: [{ text: userQuery }] }],
-                    tools: [{ "google_search": {} }],
-                    systemInstruction: {
-                        parts: [{ text: systemPrompt }]
-                    },
-                };
-
-                let retries = 0;
-                const maxRetries = 3;
-                const baseDelay = 1000;
-
-                const fetchWithRetry = async () => {
-                    try {
-                        const response = await fetch(apiUrl, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
-
-                        if (response.status === 429 && retries < maxRetries) {
-                            const delay = baseDelay * Math.pow(2, retries) + Math.random() * 1000;
-                            retries++;
-                            return new Promise(resolve => setTimeout(() => resolve(fetchWithRetry()), delay));
-                        }
-
-                        if (!response.ok) {
-                            throw new Error(`API call failed with status: ${response.status}`);
-                        }
-
-                        return await response.json();
-                    } catch (error) {
-                        if (retries < maxRetries) {
-                            const delay = baseDelay * Math.pow(2, retries) + Math.random() * 1000;
-                            retries++;
-                            return new Promise(resolve => setTimeout(() => resolve(fetchWithRetry()), delay));
-                        } else {
-                            throw error;
-                        }
-                    }
-                };
-                
                 try {
-                    const result = await fetchWithRetry();
-                    const candidate = result?.candidates?.[0];
-                    let aiResponseText = 'Não foi possível obter uma resposta. Tente novamente.';
+                    const response = await fetch(proxyUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ prompt: userMessage })
+                    });
 
-                    if (candidate && candidate.content?.parts?.[0]?.text) {
-                        aiResponseText = candidate.content.parts[0].text;
+                    if (!response.ok) {
+                        throw new Error(`Erro do servidor: ${response.status} ${response.statusText}`);
                     }
 
+                    const result = await response.json();
+                    
                     // Display AI message
                     const aiDiv = document.createElement('div');
                     aiDiv.className = 'p-3 rounded-lg text-sm text-gray-700 max-w-[85%] ai-message self-start shadow';
-                    aiDiv.textContent = aiResponseText;
+                    aiDiv.textContent = result.text;
                     chatHistory.appendChild(aiDiv);
 
                 } catch (error) {
                     const errorDiv = document.createElement('div');
                     errorDiv.className = 'p-3 rounded-lg text-sm text-red-700 max-w-[85%] ai-message self-start shadow';
-                    errorDiv.textContent = 'Erro ao se conectar com o servidor. Por favor, tente novamente.';
+                    errorDiv.textContent = 'Erro ao se conectar com o especialista. Por favor, hospede o servidor de API ou tente novamente.';
                     chatHistory.appendChild(errorDiv);
                 } finally {
                     chatHistory.scrollTop = chatHistory.scrollHeight;
